@@ -107,7 +107,7 @@ if datos_totales:
     
     try:
         # Usamos upsert para actualizar datos existentes o insertar nuevos
-        respuesta = supabase.table('tendencias_trends').upsert(datos_trends).execute()
+        respuesta = supabase.table('tendencias_trends').upsert(datos_trends, on_conflict='codigo_iso,fecha').execute()
         print("¡Datos guardados exitosamente en la tabla 'tendencias_trends'!")
     except Exception as e:
         print(f"Error al guardar en Supabase: {e}")
