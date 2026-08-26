@@ -77,7 +77,7 @@ def main():
     
     try:
         # El método upsert inserta nuevos o actualiza los existentes basado en (codigo_iso, fecha)
-        respuesta = supabase.table('clima_diario').upsert(datos).execute()
+        respuesta = supabase.table('clima_diario').upsert(datos, on_conflict='codigo_iso,fecha').execute()
         print("¡Datos guardados exitosamente en la tabla 'clima_diario'!")
     except Exception as e:
         print(f"Error al guardar en Supabase: {e}")
